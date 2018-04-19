@@ -85,7 +85,7 @@ export default class TransformableImage extends Component {
     }
 
     const viewTransformerDelegation = Object.keys(ViewTransformer.propTypes).reduce(
-      (acc, prop) => (this.props[prop] ? { ...acc, [prop]: this.props[prop] } : acc), {}
+      (acc, prop) => (this.props[prop] !== undefined ? { ...acc, [prop]: this.props[prop] } : acc), {}
     );
 
     return (
