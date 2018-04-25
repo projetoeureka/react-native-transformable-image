@@ -98,7 +98,9 @@ export default class TransformableImage extends Component {
         onLayout={this.onLayout.bind(this)}
         {...viewTransformerDelegation}
         enableTransform={this.props.enableTransform && this.state.imageLoaded} //disable transform until image is loaded
-        style={this.props.style}>
+        style={this.props.style}
+        enableOnStartShouldSetResponder={false}
+      >
         <Image
           {...this.props}
           style={[this.props.style, {backgroundColor: 'transparent'}]}
