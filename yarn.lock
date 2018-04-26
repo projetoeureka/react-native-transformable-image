@@ -90,9 +90,9 @@ react-native-scroller@0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/react-native-scroller/-/react-native-scroller-0.0.6.tgz#dea8c89bd1ca2d2445fbb6b3a90960df6c1767ff"
 
-"react-native-view-transformer@https://github.com/projetoeureka/react-native-view-transformer":
+"react-native-view-transformer@git://github.com/projetoeureka/react-native-view-transformer#5f86a11a94afedfacff5b8c6bd030f532d2253b6":
   version "0.0.28"
-  resolved "https://github.com/projetoeureka/react-native-view-transformer#5f86a11a94afedfacff5b8c6bd030f532d2253b6"
+  resolved "git://github.com/projetoeureka/react-native-view-transformer#5f86a11a94afedfacff5b8c6bd030f532d2253b6"
   dependencies:
     prop-types "^15.5.10"
     react-native-gesture-responder "0.1.1"
