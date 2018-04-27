@@ -2,7 +2,7 @@
 
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 
 import ViewTransformer from 'react-native-view-transformer';
 
@@ -23,6 +23,7 @@ export default class TransformableImage extends Component {
     enableTransform: PropTypes.bool,
     enableScale: PropTypes.bool,
     enableTranslate: PropTypes.bool,
+    loadingComponent: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
     onSingleTapConfirmed: PropTypes.func,
     onTransformGestureReleased: PropTypes.func,
     onViewTransformed: PropTypes.func
@@ -99,6 +100,11 @@ export default class TransformableImage extends Component {
         {...viewTransformerDelegation}
         enableTransform={this.props.enableTransform && this.state.imageLoaded} //disable transform until image is loaded
         style={this.props.style}>
+        {!this.state.imageLoaded && this.props.loadingComponent && (
+          <View style={this.props.style}>
+            {this.props.loadingComponent}
+          </View>
+        )}
         <Image
           {...this.props}
           style={[this.props.style, {backgroundColor: 'transparent'}]}
