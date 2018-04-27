@@ -23,7 +23,7 @@ export default class TransformableImage extends Component {
     enableTransform: PropTypes.bool,
     enableScale: PropTypes.bool,
     enableTranslate: PropTypes.bool,
-    loadingComponent: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
+    LoadingComponent: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
     onSingleTapConfirmed: PropTypes.func,
     onTransformGestureReleased: PropTypes.func,
     onViewTransformed: PropTypes.func
@@ -100,9 +100,9 @@ export default class TransformableImage extends Component {
         {...viewTransformerDelegation}
         enableTransform={this.props.enableTransform && this.state.imageLoaded} //disable transform until image is loaded
         style={this.props.style}>
-        {!this.state.imageLoaded && this.props.loadingComponent && (
+        {!this.state.imageLoaded && this.props.LoadingComponent && (
           <View style={this.props.style}>
-            {this.props.loadingComponent}
+            {this.props.LoadingComponent}
           </View>
         )}
         <Image
