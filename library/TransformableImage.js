@@ -48,17 +48,17 @@ export default class TransformableImage extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (!this.props.pixels) {
       this.getImageSize(this.props.source);
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!sameSource(this.props.source, nextProps.source)) {
+  componentDidUpdate(prevProps) {
+    if (!sameSource(prevProps.source, this.props.source)) {
       //image source changed, clear last image's pixels info if any
       this.setState({pixels: undefined, keyAcumulator: this.state.keyAcumulator + 1})
-      this.getImageSize(nextProps.source);
+      this.getImageSize(this.props.source);
     }
   }
 
