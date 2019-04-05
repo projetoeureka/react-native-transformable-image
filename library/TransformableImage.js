@@ -3,6 +3,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Image, View } from 'react-native';
+import Video from 'react-native-video';
 
 import ViewTransformer from 'react-native-view-transformer';
 
@@ -62,6 +63,11 @@ export default class TransformableImage extends Component {
     }
   }
 
+  _isVideo = uri => {
+    const videoExtensions = [/.mp4$/g];
+    return videoExtensions.some(extension => extension.test(uri));
+  }
+
   render() {
     let maxScale = 1;
     let contentAspectRatio = undefined;
@@ -89,6 +95,27 @@ export default class TransformableImage extends Component {
       (acc, prop) => (this.props[prop] !== undefined ? { ...acc, [prop]: this.props[prop] } : acc), {}
     );
 
+    const imageOrVideo = this._isVideo(this.props.source.uri) ? (
+      <Video
+        style={this.props.style}
+        source={this.props.source}
+        resizeMode='contain'
+        onLoadStart={this.onLoadStart.bind(this)}
+        onLoad={this.onLoad.bind(this)}
+        selectedAudioTrack={{ type: 'disabled' }}
+        repeat
+      />
+    ) : (
+      <Image
+        {...this.props}
+        style={[this.props.style, {backgroundColor: 'transparent'}]}
+        resizeMode={'contain'}
+        onLoadStart={this.onLoadStart.bind(this)}
+        onLoad={this.onLoad.bind(this)}
+        capInsets={{left: 0.1, top: 0.1, right: 0.1, bottom: 0.1}} //on iOS, use capInsets to avoid image downsampling
+      />
+    );
+
     return (
       <ViewTransformer
         ref='viewTransformer'
@@ -105,14 +132,7 @@ export default class TransformableImage extends Component {
             {this.props.LoadingComponent}
           </View>
         )}
-        <Image
-          {...this.props}
-          style={[this.props.style, {backgroundColor: 'transparent'}]}
-          resizeMode={'contain'}
-          onLoadStart={this.onLoadStart.bind(this)}
-          onLoad={this.onLoad.bind(this)}
-          capInsets={{left: 0.1, top: 0.1, right: 0.1, bottom: 0.1}} //on iOS, use capInsets to avoid image downsampling
-        />
+        {imageOrVideo}
       </ViewTransformer>
     );
   }
