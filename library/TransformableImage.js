@@ -1,7 +1,7 @@
 'use strict';
 
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import { Image, View } from 'react-native';
 import Video from 'react-native-video';
 
@@ -9,7 +9,7 @@ import ViewTransformer from 'react-native-view-transformer';
 
 let DEV = false;
 
-export default class TransformableImage extends Component {
+export default class TransformableImage extends React.Component {
 
   static enableDebug() {
     DEV = true;
