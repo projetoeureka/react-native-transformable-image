@@ -18,7 +18,7 @@
   "homepage": "https://github.com/ldn0x7dc/react-native-transformable-image#readme",
   "dependencies": {
     "prop-types": "^15.5.10",
-    "react-native-view-transformer": "git://github.com/projetoeureka/react-native-view-transformer#1d9024cae23b026d966112d8a06ef56c31f4553f"
+    "react-native-view-transformer": "git://github.com/projetoeureka/react-native-view-transformer#3c854ccf08815245f0504920b400331b85d80339"
   },
    "peerDependencies": {
     "react-native-video":"*"
